@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
+import StoryEditor from "./components/StoryEditor";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -43,7 +44,6 @@ const Chat = () => {
     } catch (e) {
       const detail = e?.response?.data?.detail || e.message;
       setError(detail);
-      // remove last user msg on hard failure? keep it visible instead
     } finally {
       setLoading(false);
     }
@@ -131,6 +131,9 @@ const Home = () => {
         </a>
         <p className="mt-5">Building something incredible ~!</p>
       </header>
+      <section className="panel">
+        <StoryEditor />
+      </section>
       <section className="panel">
         <Chat />
       </section>
